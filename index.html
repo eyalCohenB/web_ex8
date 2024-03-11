@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>React Gallery</title>
+    <title>Gallery</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.development.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.development.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
@@ -44,12 +44,12 @@
             transform: scale(1.1);
         }
 
-        .large_scale-container {
+        .selected-image-container {
             text-align: center;
             margin-top: 40px;
         }
 
-        .large_scale-container img {
+        .selected-image-container img {
             max-width: 70%;
             max-height: 60vh;
             border-radius: 15px;
@@ -76,7 +76,7 @@
             super(props);
             this.state = {
                 images: [],
-                selected_image: null,
+                selectedImage: null,
                 currentIndex: 0
             };
         }
@@ -97,12 +97,12 @@
             setInterval(() => {
                 const { images, currentIndex } = this.state;
                 const newIndex = (currentIndex + 1) % images.length;
-                this.setState({ currentIndex: newIndex, selected_image: images[newIndex].full });
+                this.setState({ currentIndex: newIndex, selectedImage: images[newIndex].full });
             }, 1000);
         }
 
         selectImage = (imageUrl) => {
-            this.setState({ selected_image: imageUrl });
+            this.setState({ selectedImage: imageUrl });
         }
 
         render() {
@@ -115,10 +115,10 @@
                         ))}
                     </div>
                     <div className="line"></div>
-                    {this.state.selected_image && (
-                        <div className="large_scale-container">
+                    {this.state.selectedImage && (
+                        <div className="selected-image-container">
                             <h2>Large scale</h2>
-                            <img src={this.state.selected_image} alt="Selected Image" />
+                            <img src={this.state.selectedImage} alt="Selected Image" />
                         </div>
                     )}
                 </div>
